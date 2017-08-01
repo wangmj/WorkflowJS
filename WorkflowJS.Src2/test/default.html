@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1399, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>workflowJs 测试</title>
+</head>
+
+<body>
+    <button onclick="startFlow()">startFlow</button>
+    <script src="../release/workflow.js"></script>
+    <script>
+        function startFlow() {
+            var flowchart = {
+                $inputs: [],
+                $outputs: [],
+                $globals: {
+                    "a": 1
+                },
+                activities: {
+                    "assignTest": jswf.Activity({
+                        activity: new jswf.AssignActivity(),
+                        $inputs: {
+                            values: {
+                                "a": "this.a+1"
+                            }
+                        }
+
+                    })
+                }
+            }
+            jswf.FlowchartInvoker.Createflowchart(flowchart).Invoke(function() {
+                alert("workflowjs completed");
+            })
+        }
+    </script>
+</body>
+
+</html>
